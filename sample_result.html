@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>D2R-Traderie-Appraiser</title>
+    <style>
+        /* 버튼 스타일 공통 */
+        .button {
+            font-weight: bold;
+            width: 150px;
+            height: 50px;
+            color: white;
+        }
+        
+        /* 활성화된 버튼 스타일 */
+        .active {
+            background-color: green;
+        }
+
+        /* 비활성화된 버튼 스타일 */
+        .inactive {
+            background-color: grey;
+        }
+
+        /* 비활성화된 버튼에 마우스 올림 */
+        .inactive:hover {
+            background-color: blue;
+        }
+
+        /* 비활성화된 버튼에 대한 내용물 가림 */
+        .hidden {
+            display: none;
+        }
+
+        /* 맨위 제목 영역 */
+        #title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* 버튼 영역 */
+        #buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 테이블 영역 */
+        #table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            width: 70%;
+            border: 2px solid #000; /* 테이블 경계 설정 */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #000; /* 셀 경계 설정 */
+        }
+
+        th {
+            background-color: #f2f2f2; /* 헤더 배경색 */
+            font-weight: bold; /* 헤더 글씨 두껍게 */
+        }
+
+        td {
+            background-color: #fff;
+            height: 150px;
+            padding: 20px; /* 상하 좌우 20px */
+            justify-content: center; /* 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+        }
+
+        canvas {
+            height: 140px; /* 캔버스 높이 제한 */
+            max-width: 100%; /* 셀 안에서 너비 제한 */
+            max-height: 100%; /* 셀 안에서 높이 제한 */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="title">
+        <img src="https://cdn.nookazon.com/diablo2resurrected/icons/logo.png" alt="logo" style="width: 100px; vertical-align: middle;">
+        <img src="https://cdn.nookazon.com/traderie/opengraph.jpg" alt="logo" style="width: 200px; vertical-align: middle;">
+        <img src="https://cdn.pixabay.com/photo/2013/07/12/14/28/chart-line-148256_960_720.png" alt="logo" style="width: 70px; vertical-align: middle;">
+    </div>
+    <div id="buttons">
+        <button onclick="showSection('SoftcoreLadderSection')" id="SoftcoreLadderBtn" class="button inactive">Softcore Ladder</button>
+        <button onclick="showSection('SoftcoreNonLadderSection')" id="SoftcoreNonLadderBtn" class="button inactive">Softcore NonLadder</button>
+        <button onclick="showSection('HardcoreLadderSection')" id="HardcoreLadderBtn" class="button inactive">Hardcore Ladder</button>
+    </div>
+
+    <!-- chatGPT가 만들어준 테이블 섹션 생성 함수 -->
+    <script>
+        function createTable(sectionId, data) {
+            // 데이터를 Price 값(배열의 마지막 값) 기준으로 정렬
+            const sortedData = Object.entries(data).sort((a, b) => {
+                const priceA = a[1].datasets[0].data[a[1].datasets[0].data.length - 1];
+                const priceB = b[1].datasets[0].data[b[1].datasets[0].data.length - 1];
+                return priceB - priceA; // 내림차순 정렬
+            });
+
+            // 정렬된 데이터로 테이블 HTML 생성
+            let tableHTML = `<table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Chart</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            // 정렬된 데이터를 기반으로 테이블에 값 추가
+            for (const [itemName, itemData] of sortedData) {
+                const lastPrice = itemData.datasets[0].data[itemData.datasets[0].data.length - 1];
+                tableHTML += `
+                    <tr>
+                        <td>${itemName}</td>
+                        <td>${lastPrice}</td>
+                        <td>
+                            <canvas id="${sectionId}_Chart_${itemName.replace(' ', '_')}" style="width: 100%; height: 100px;"></canvas>
+                        </td>
+                    </tr>`;
+            }
+
+            tableHTML += `
+                </tbody>
+            </table>`;
+            document.getElementById(sectionId).innerHTML = tableHTML;
+        }
+    </script>
+
+    <div id="SoftcoreLadderSection" class="hidden"></div>
+    <div id="SoftcoreNonLadderSection" class="hidden"></div>
+    <div id="HardcoreLadderSection" class="hidden"></div>
+
+    <script>
+        // chatGPT가 만들어준 버튼 클릭 함수
+        function showSection(sectionId) {
+            const buttons = ['SoftcoreLadderBtn', 'SoftcoreNonLadderBtn', 'HardcoreLadderBtn'];
+            const sections = ['SoftcoreLadderSection', 'SoftcoreNonLadderSection', 'HardcoreLadderSection'];
+
+            // 모든 버튼 비활성화 및 섹션 숨기기
+            buttons.forEach(btn => document.getElementById(btn).classList.replace('active', 'inactive'));
+            sections.forEach(section => document.getElementById(section).classList.add('hidden'));
+
+            // 활성화된 버튼 처리
+            const activeButton = document.getElementById(buttons[sections.indexOf(sectionId)]);
+            activeButton.classList.replace('inactive', 'active');
+
+            // 특정 섹션 활성화 및 차트 렌더링
+            document.getElementById(sectionId).classList.remove('hidden');
+            if (sectionId === 'SoftcoreLadderSection') {
+                createTable(sectionId, generateData(Softcore_Ladder_Values));
+                renderCharts(sectionId, generateData(Softcore_Ladder_Values));
+            } else if (sectionId === 'SoftcoreNonLadderSection') {
+                createTable(sectionId, generateData(Softcore_NonLadder_Values));
+                renderCharts(sectionId, generateData(Softcore_NonLadder_Values));
+            } else if (sectionId === 'HardcoreLadderSection') {
+                createTable(sectionId, generateData(Hardcore_Ladder_Values));
+                renderCharts(sectionId, generateData(Hardcore_Ladder_Values));
+            }
+        }
+
+        // chatGPT가 만들어준 데이터 객체 자동 생성 함수
+        function generateData(values) {
+            const data = {};
+            for (const [itemName, itemValues] of Object.entries(values)) {
+                data[itemName] = {
+                    labels: Trade_Times,
+                    datasets: [{ ...baseChartDataset, data: itemValues }]
+                };
+            }
+            return data;
+        }
+		
+        const baseChartDataset = {
+            label: 'Price',
+            borderColor: 'rgba(0, 0, 255, 1)',
+            borderWidth: 2,
+            fill: false
+        };
+		
+        // 차트 생성
+        function renderCharts(sectionId, data) {
+            for (const itemName in data) {
+                const chartId = `${sectionId}_Chart_${itemName.replace(' ', '_')}`;
+                const chartData = data[itemName];
+
+                const chartCtx = document.getElementById(chartId).getContext('2d');
+                const chartParam = {
+                    type: 'line',
+                    data: chartData,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+                
+                new Chart(chartCtx, chartParam);
+            }
+        }
+
+        // 외부에서 주입되는 데이터들
+        const Trade_Times = ["2024-10-15 18:00:00", "2024-10-16 02:00:00", "2024-10-16 06:00:00"];
+        const Softcore_Ladder_Values = {"Ist Rune": [5.1, 5.1, 5.1], "Jah Rune": [93.0, 93.0, 94.0], "Ber Rune": [60.0, 60.0, 61.0], "Lo Rune": [31.0, 31.0, 31.0], "Ral Rune": [0.53, 0.54, 0.55], "Mal Rune": [4.8, 4.8, 4.8], "Hel Rune": [1.2, 1.2, 1.2], "Vex Rune": [13.0, 13.0, 13.0], "Ohm Rune": [17.0, 16.0, 17.0], "Gul Rune": [8.5, 8.4, 8.4], "The Stone of Jordan": [17.0, 17.0, 17.0], "Random Gems": [0.3, 0.3, 0.31], "Um Rune": [4.6, 4.6, 4.3], "Sur Rune": [41.0, 40.0, 41.0], "Amn Rune": [0.43, 0.42, 0.41], "Sol Rune": [0.3, 0.29, 0.3], "Lem Rune": [3.0, 2.6, 2.8], "Pul Rune": [3.4, 3.4, 3.8], "Cham Rune": [18.0, 19.0, 21.0], "Tal Rune": [0.31, 0.32, 0.31], "Ko Rune": [1.5, 1.8, 1.7], "Io Rune": [0.81, 0.87, 0.94], "Zod Rune": [19.0, 19.0, 24.0], "Tir Rune": [0.22, 0.2, 0.23], "Thul Rune": [0.31, 0.31, 0.31], "Shael Rune": [0.23, 0.27, 0.27], "Ort Rune": [0.19, 0.13, 0.13], "Eld Rune": [0.48, 0.5, 0.51], "El Rune": [0.49, 0.46, 0.46], "Fal Rune": [0.96, 0.83, 0.83], "Dol Rune": [0.31, 0.29, 0.31], "Lum Rune": [0.63, 0.67, 0.78], "Ith Rune": [0.21, 0.21, 0.25], "Nef Rune": [0.29, 0.3, 0.26], "Eth Rune": [0.17, 0.17, 0.17]};
+        const Softcore_NonLadder_Values = {"Jah Rune": [28.0, 29.0, 29.0], "Ber Rune": [22.0, 22.0, 23.0], "Hel Rune": [1.6, 1.6, 1.6], "Ist Rune": [3.5, 3.6, 3.0], "Ral Rune": [0.6, 0.61, 0.57], "Mal Rune": [3.0, 3.2, 3.1], "Lo Rune": [10.0, 12.0, 12.0], "Ohm Rune": [8.7, 8.7, 8.5], "Tir Rune": [0.51, 0.54, 0.54], "Vex Rune": [8.6, 7.1, 6.9], "Um Rune": [3.4, 3.9, 3.5], "Sol Rune": [0.44, 0.43, 0.43], "Random Gems": [0.24, 0.22, 0.22], "Gul Rune": [4.9, 3.7, 3.3], "Lem Rune": [2.2, 2.3, 2.2], "Eth Rune": [0.5, 0.51, 0.51], "Pul Rune": [2.6, 2.3, 2.1], "Thul Rune": [0.38, 0.39, 0.38], "Amn Rune": [0.37, 0.41, 0.38], "Sur Rune": [14.0, 13.0, 13.0], "Cham Rune": [10.0, 8.9, 6.7], "Ko Rune": [0.96, 0.99, 0.88], "Nef Rune": [0.29, 0.32, 0.31], "El Rune": [0.92, 0.94, 0.94], "The Stone of Jordan": [4.9, 7.3, 6.5], "Shael Rune": [0.21, 0.22, 0.22], "Eld Rune": [0.91, 0.93, 0.93], "Tal Rune": [0.33, 0.34, 0.29], "Ort Rune": [0.4, 0.13, 0.11], "Io Rune": [0.17, 0.18, 0.15], "Zod Rune": [11.0, 18.0, 18.0], "Ith Rune": [0.29, 0.25, 0.19], "Dol Rune": [0.87, 0.87, 0.87], "Fal Rune": [1.9, 1.9, 1.9]};
+        const Hardcore_Ladder_Values = {"Ohm Rune": [50.0, 50.0, 50.0], "Ber Rune": [200.0, 200.0, 200.0], "Jah Rune": [225.0, 212.0, 212.0], "Vex Rune": [0.0, 0.0, 0.0], "Hel Rune": [0.0, 0.0, 0.0], "Gul Rune": [17.0, 50.0, 50.0], "Random Gems": [0.0, 0.59, 0.59], "Mal Rune": [0.0, 12.0, 12.0], "Ist Rune": [0.0, 15.0, 15.0], "Ral Rune": [0.31, 0.92, 0.92], "Um Rune": [5.6, 27.0, 27.0], "Amn Rune": [0.0, 0.37, 0.37], "The Stone of Jordan": [129.0, 178.0, 178.0], "Zod Rune": [50.0, 50.0, 50.0], "Cham Rune": [56.0, 56.0, 56.0], "Lo Rune": [94.0, 94.0, 94.0], "Sur Rune": [106.0, 106.0, 106.0]};
+    </script>
+</body>
+</html>

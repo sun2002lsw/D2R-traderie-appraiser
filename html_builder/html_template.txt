@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>D2R-Traderie-Appraiser</title>
+    <style>
+        /* 버튼 스타일 공통 */
+        .button {
+            font-weight: bold;
+            width: 150px;
+            height: 50px;
+            color: white;
+        }
+        
+        /* 활성화된 버튼 스타일 */
+        .active {
+            background-color: green;
+        }
+
+        /* 비활성화된 버튼 스타일 */
+        .inactive {
+            background-color: grey;
+        }
+
+        /* 비활성화된 버튼에 마우스 올림 */
+        .inactive:hover {
+            background-color: blue;
+        }
+
+        /* 비활성화된 버튼에 대한 내용물 가림 */
+        .hidden {
+            display: none;
+        }
+
+        /* 맨위 제목 영역 */
+        #title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* 버튼 영역 */
+        #buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 테이블 영역 */
+        #table-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            width: 70%;
+            border: 2px solid #000; /* 테이블 경계 설정 */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #000; /* 셀 경계 설정 */
+        }
+
+        th {
+            background-color: #f2f2f2; /* 헤더 배경색 */
+            font-weight: bold; /* 헤더 글씨 두껍게 */
+        }
+
+        td {
+            background-color: #fff;
+            height: 150px;
+            padding: 20px; /* 상하 좌우 20px */
+            justify-content: center; /* 가운데 정렬 */
+            align-items: center; /* 수직 가운데 정렬 */
+        }
+
+        canvas {
+            height: 140px; /* 캔버스 높이 제한 */
+            max-width: 100%; /* 셀 안에서 너비 제한 */
+            max-height: 100%; /* 셀 안에서 높이 제한 */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="title">
+        <img src="https://cdn.nookazon.com/diablo2resurrected/icons/logo.png" alt="logo" style="width: 100px; vertical-align: middle;">
+        <img src="https://cdn.nookazon.com/traderie/opengraph.jpg" alt="logo" style="width: 200px; vertical-align: middle;">
+        <img src="https://cdn.pixabay.com/photo/2013/07/12/14/28/chart-line-148256_960_720.png" alt="logo" style="width: 70px; vertical-align: middle;">
+    </div>
+    <div id="buttons">
+        <button onclick="showSection('SoftcoreLadderSection')" id="SoftcoreLadderBtn" class="button inactive">Softcore Ladder</button>
+        <button onclick="showSection('SoftcoreNonLadderSection')" id="SoftcoreNonLadderBtn" class="button inactive">Softcore NonLadder</button>
+        <button onclick="showSection('HardcoreLadderSection')" id="HardcoreLadderBtn" class="button inactive">Hardcore Ladder</button>
+    </div>
+
+    <!-- chatGPT가 만들어준 테이블 섹션 생성 함수 -->
+    <script>
+        function createTable(sectionId, data) {
+            // 데이터를 Price 값(배열의 마지막 값) 기준으로 정렬
+            const sortedData = Object.entries(data).sort((a, b) => {
+                const priceA = a[1].datasets[0].data[a[1].datasets[0].data.length - 1];
+                const priceB = b[1].datasets[0].data[b[1].datasets[0].data.length - 1];
+                return priceB - priceA; // 내림차순 정렬
+            });
+
+            // 정렬된 데이터로 테이블 HTML 생성
+            let tableHTML = `<table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Chart</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            // 정렬된 데이터를 기반으로 테이블에 값 추가
+            for (const [itemName, itemData] of sortedData) {
+                const lastPrice = itemData.datasets[0].data[itemData.datasets[0].data.length - 1];
+                tableHTML += `
+                    <tr>
+                        <td>${itemName}</td>
+                        <td>${lastPrice}</td>
+                        <td>
+                            <canvas id="${sectionId}_Chart_${itemName.replace(' ', '_')}" style="width: 100%; height: 100px;"></canvas>
+                        </td>
+                    </tr>`;
+            }
+
+            tableHTML += `
+                </tbody>
+            </table>`;
+            document.getElementById(sectionId).innerHTML = tableHTML;
+        }
+    </script>
+
+    <div id="SoftcoreLadderSection" class="hidden"></div>
+    <div id="SoftcoreNonLadderSection" class="hidden"></div>
+    <div id="HardcoreLadderSection" class="hidden"></div>
+
+    <script>
+        // chatGPT가 만들어준 버튼 클릭 함수
+        function showSection(sectionId) {
+            const buttons = ['SoftcoreLadderBtn', 'SoftcoreNonLadderBtn', 'HardcoreLadderBtn'];
+            const sections = ['SoftcoreLadderSection', 'SoftcoreNonLadderSection', 'HardcoreLadderSection'];
+
+            // 모든 버튼 비활성화 및 섹션 숨기기
+            buttons.forEach(btn => document.getElementById(btn).classList.replace('active', 'inactive'));
+            sections.forEach(section => document.getElementById(section).classList.add('hidden'));
+
+            // 활성화된 버튼 처리
+            const activeButton = document.getElementById(buttons[sections.indexOf(sectionId)]);
+            activeButton.classList.replace('inactive', 'active');
+
+            // 특정 섹션 활성화 및 차트 렌더링
+            document.getElementById(sectionId).classList.remove('hidden');
+            if (sectionId === 'SoftcoreLadderSection') {
+                createTable(sectionId, generateData(Softcore_Ladder_Values));
+                renderCharts(sectionId, generateData(Softcore_Ladder_Values));
+            } else if (sectionId === 'SoftcoreNonLadderSection') {
+                createTable(sectionId, generateData(Softcore_NonLadder_Values));
+                renderCharts(sectionId, generateData(Softcore_NonLadder_Values));
+            } else if (sectionId === 'HardcoreLadderSection') {
+                createTable(sectionId, generateData(Hardcore_Ladder_Values));
+                renderCharts(sectionId, generateData(Hardcore_Ladder_Values));
+            }
+        }
+
+        // chatGPT가 만들어준 데이터 객체 자동 생성 함수
+        function generateData(values) {
+            const data = {};
+            for (const [itemName, itemValues] of Object.entries(values)) {
+                data[itemName] = {
+                    labels: Trade_Times,
+                    datasets: [{ ...baseChartDataset, data: itemValues }]
+                };
+            }
+            return data;
+        }
+		
+        const baseChartDataset = {
+            label: 'Price',
+            borderColor: 'rgba(0, 0, 255, 1)',
+            borderWidth: 2,
+            fill: false
+        };
+		
+        // 차트 생성
+        function renderCharts(sectionId, data) {
+            for (const itemName in data) {
+                const chartId = `${sectionId}_Chart_${itemName.replace(' ', '_')}`;
+                const chartData = data[itemName];
+
+                const chartCtx = document.getElementById(chartId).getContext('2d');
+                const chartParam = {
+                    type: 'line',
+                    data: chartData,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+                
+                new Chart(chartCtx, chartParam);
+            }
+        }
+
+        // 외부에서 주입되는 데이터들
+        const Trade_Times = placeholder_Trade_Times;
+        const Softcore_Ladder_Values = placeholder_Softcore_Ladder_Values;
+        const Softcore_NonLadder_Values = placeholder_Softcore_NonLadder_Values;
+        const Hardcore_Ladder_Values = placeholder_Hardcore_Ladder_Values;
+    </script>
+</body>
+</html>

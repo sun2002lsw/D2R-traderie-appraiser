@@ -1,0 +1,47 @@
+[
+	{
+		"Type": "Softcore_Ladder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Ist Rune\": 5.1, \"Jah Rune\": 94.0, \"Ber Rune\": 61.0, \"Lo Rune\": 31.0, \"Ral Rune\": 0.55, \"Mal Rune\": 4.8, \"Hel Rune\": 1.2, \"Vex Rune\": 13.0, \"Ohm Rune\": 17.0, \"Gul Rune\": 8.4, \"The Stone of Jordan\": 17.0, \"Random Gems\": 0.31, \"Um Rune\": 4.3, \"Sur Rune\": 41.0, \"Amn Rune\": 0.41, \"Sol Rune\": 0.3, \"Lem Rune\": 2.8, \"Pul Rune\": 3.8, \"Cham Rune\": 21.0, \"Tal Rune\": 0.31, \"Ko Rune\": 1.7, \"Io Rune\": 0.94, \"Zod Rune\": 24.0, \"Tir Rune\": 0.23, \"Thul Rune\": 0.31, \"Shael Rune\": 0.27, \"Ort Rune\": 0.13, \"Eld Rune\": 0.51, \"El Rune\": 0.46, \"Fal Rune\": 0.83, \"Dol Rune\": 0.31, \"Lum Rune\": 0.78, \"Ith Rune\": 0.25, \"Nef Rune\": 0.26, \"Eth Rune\": 0.17}",
+		"Time": "2024-10-16 06:00:00"
+	},
+	{
+		"Type": "Softcore_Ladder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Ist Rune\": 5.1, \"Jah Rune\": 93.0, \"Ber Rune\": 60.0, \"Lo Rune\": 31.0, \"Ral Rune\": 0.54, \"Mal Rune\": 4.8, \"Ohm Rune\": 16.0, \"Hel Rune\": 1.2, \"Vex Rune\": 13.0, \"Gul Rune\": 8.4, \"Random Gems\": 0.3, \"The Stone of Jordan\": 17.0, \"Um Rune\": 4.6, \"Amn Rune\": 0.42, \"Sur Rune\": 40.0, \"Sol Rune\": 0.29, \"Cham Rune\": 19.0, \"Zod Rune\": 19.0, \"Tal Rune\": 0.32, \"Lem Rune\": 2.6, \"Io Rune\": 0.87, \"Pul Rune\": 3.4, \"Thul Rune\": 0.31, \"Tir Rune\": 0.2, \"Ko Rune\": 1.8, \"Ort Rune\": 0.13, \"Shael Rune\": 0.27, \"El Rune\": 0.46, \"Eld Rune\": 0.5, \"Dol Rune\": 0.29, \"Fal Rune\": 0.83, \"Ith Rune\": 0.21, \"Nef Rune\": 0.3, \"Lum Rune\": 0.67, \"Eth Rune\": 0.17}",
+		"Time": "2024-10-16 02:00:00"
+	},
+	{
+		"Type": "Softcore_Ladder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Ist Rune\": 5.1, \"Jah Rune\": 93.0, \"Ber Rune\": 60.0, \"Lo Rune\": 31.0, \"Ral Rune\": 0.53, \"Mal Rune\": 4.8, \"Ohm Rune\": 17.0, \"Hel Rune\": 1.2, \"Vex Rune\": 13.0, \"Gul Rune\": 8.5, \"Random Gems\": 0.3, \"The Stone of Jordan\": 17.0, \"Um Rune\": 4.6, \"Sur Rune\": 41.0, \"Amn Rune\": 0.43, \"Sol Rune\": 0.3, \"Zod Rune\": 19.0, \"Cham Rune\": 18.0, \"Tal Rune\": 0.31, \"Lem Rune\": 3.0, \"Pul Rune\": 3.4, \"Io Rune\": 0.81, \"Ort Rune\": 0.19, \"Tir Rune\": 0.22, \"Thul Rune\": 0.31, \"Ko Rune\": 1.5, \"El Rune\": 0.49, \"Fal Rune\": 0.96, \"Shael Rune\": 0.23, \"Eld Rune\": 0.48, \"Dol Rune\": 0.31, \"Nef Rune\": 0.29, \"Ith Rune\": 0.21, \"Lum Rune\": 0.63, \"Eth Rune\": 0.17}",
+		"Time": "2024-10-15 18:00:00"
+	},
+	{
+		"Type": "Softcore_NonLadder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Jah Rune\": 29.0, \"Ber Rune\": 23.0, \"Hel Rune\": 1.6, \"Ist Rune\": 3.0, \"Ral Rune\": 0.57, \"Mal Rune\": 3.1, \"Lo Rune\": 12.0, \"Ohm Rune\": 8.5, \"Tir Rune\": 0.54, \"Vex Rune\": 6.9, \"Um Rune\": 3.5, \"Sol Rune\": 0.43, \"Random Gems\": 0.22, \"Gul Rune\": 3.3, \"Lem Rune\": 2.2, \"Eth Rune\": 0.51, \"Pul Rune\": 2.1, \"Thul Rune\": 0.38, \"Amn Rune\": 0.38, \"Sur Rune\": 13.0, \"Cham Rune\": 6.7, \"Ko Rune\": 0.88, \"Nef Rune\": 0.31, \"El Rune\": 0.94, \"The Stone of Jordan\": 6.5, \"Shael Rune\": 0.22, \"Eld Rune\": 0.93, \"Tal Rune\": 0.29, \"Ort Rune\": 0.11, \"Io Rune\": 0.15, \"Zod Rune\": 18.0, \"Ith Rune\": 0.19}",
+		"Time": "2024-10-16 06:00:00"
+	},
+	{
+		"Type": "Softcore_NonLadder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Jah Rune\": 29.0, \"Ber Rune\": 22.0, \"Ral Rune\": 0.61, \"Ist Rune\": 3.6, \"Hel Rune\": 1.6, \"Mal Rune\": 3.2, \"Ohm Rune\": 8.7, \"Lo Rune\": 12.0, \"Tir Rune\": 0.54, \"Vex Rune\": 7.1, \"Random Gems\": 0.22, \"Sol Rune\": 0.43, \"Um Rune\": 3.9, \"Lem Rune\": 2.3, \"Gul Rune\": 3.7, \"Eth Rune\": 0.51, \"Amn Rune\": 0.41, \"Pul Rune\": 2.3, \"Thul Rune\": 0.39, \"Nef Rune\": 0.32, \"Sur Rune\": 13.0, \"The Stone of Jordan\": 7.3, \"El Rune\": 0.94, \"Ko Rune\": 0.99, \"Cham Rune\": 8.9, \"Ith Rune\": 0.25, \"Shael Rune\": 0.22, \"Eld Rune\": 0.93, \"Tal Rune\": 0.34, \"Ort Rune\": 0.13, \"Io Rune\": 0.18, \"Zod Rune\": 18.0}",
+		"Time": "2024-10-16 02:00:00"
+	},
+	{
+		"Type": "Softcore_NonLadder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Jah Rune\": 28.0, \"Ber Rune\": 22.0, \"Hel Rune\": 1.6, \"Ral Rune\": 0.6, \"Ist Rune\": 3.5, \"Mal Rune\": 3.0, \"Lo Rune\": 10.0, \"Ohm Rune\": 8.7, \"Random Gems\": 0.24, \"Tir Rune\": 0.51, \"Vex Rune\": 8.6, \"Sur Rune\": 14.0, \"Um Rune\": 3.4, \"The Stone of Jordan\": 4.9, \"Lem Rune\": 2.2, \"Eth Rune\": 0.5, \"Thul Rune\": 0.38, \"Ko Rune\": 0.96, \"Gul Rune\": 4.9, \"Pul Rune\": 2.6, \"Amn Rune\": 0.37, \"Sol Rune\": 0.44, \"Ith Rune\": 0.29, \"Nef Rune\": 0.29, \"Cham Rune\": 10.0, \"El Rune\": 0.92, \"Eld Rune\": 0.91, \"Io Rune\": 0.17, \"Shael Rune\": 0.21, \"Tal Rune\": 0.33, \"Zod Rune\": 11.0, \"Ort Rune\": 0.4, \"Dol Rune\": 0.87, \"Fal Rune\": 1.9}",
+		"Time": "2024-10-15 18:00:00"
+	},
+	{
+		"Type": "Hardcore_Ladder",
+		"ItemValues": "{\"Perfect Amethyst\": 1}",
+		"Time": "2024-10-16 06:00:00"
+	},
+	{
+		"Type": "Hardcore_Ladder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Ohm Rune\": 50.0, \"Ber Rune\": 200.0, \"Jah Rune\": 212.0, \"Gul Rune\": 50.0, \"Random Gems\": 0.59, \"Mal Rune\": 12.0, \"Ist Rune\": 15.0, \"Ral Rune\": 0.92, \"Um Rune\": 27.0, \"Amn Rune\": 0.37, \"The Stone of Jordan\": 178.0}",
+		"Time": "2024-10-16 02:00:00"
+	},
+	{
+		"Type": "Hardcore_Ladder",
+		"ItemValues": "{\"Perfect Amethyst\": 1, \"Ohm Rune\": 50.0, \"Ber Rune\": 200.0, \"Jah Rune\": 225.0, \"Gul Rune\": 17.0, \"Um Rune\": 5.6, \"Ral Rune\": 0.31, \"Zod Rune\": 50.0, \"The Stone of Jordan\": 129.0, \"Cham Rune\": 56.0, \"Lo Rune\": 94.0, \"Sur Rune\": 106.0}",
+		"Time": "2024-10-15 18:00:00"
+	}
+]
