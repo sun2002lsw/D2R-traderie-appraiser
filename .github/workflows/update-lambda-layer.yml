@@ -1,0 +1,33 @@
+name: Update Lambda Layer
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update-layer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Create zip package
+      run: |
+        mkdir -p python/lib/python3.12/site-packages
+        cp html_builder/* python/lib/python3.12/site-packages/
+        zip -r HTML_Builder_Layer.zip python
+
+    - name: Update Lambda Layer
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ap-northeast-2
+      run: |
+        aws lambda publish-layer-version \
+          --layer-name HTML_Builder_Layer \
+          --zip-file fileb://HTML_Builder_Layer.zip
