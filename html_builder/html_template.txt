@@ -11,7 +11,7 @@
             height: 50px;
             color: white;
         }
-        
+
         /* 활성화된 버튼 스타일 */
         .active {
             background-color: green;
@@ -32,12 +32,12 @@
             display: none;
         }
 
-        /* 맨위 제목 영역 */
+        /* 제목 영역 */
         #title {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
 
         /* 버튼 영역 */
@@ -55,6 +55,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding-bottom: 60px; /* 여백 추가 */
         }
 
         table {
@@ -88,6 +89,13 @@
             max-width: 100%; /* 셀 안에서 너비 제한 */
             max-height: 100%; /* 셀 안에서 높이 제한 */
         }
+
+        /* contact 영역 */
+        #footer {
+            text-align: center;
+            margin-top: 10px;
+            position: relative;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -97,6 +105,7 @@
         <img src="https://cdn.nookazon.com/traderie/opengraph.jpg" alt="logo" style="width: 200px; vertical-align: middle;">
         <img src="https://cdn.pixabay.com/photo/2013/07/12/14/28/chart-line-148256_960_720.png" alt="logo" style="width: 70px; vertical-align: middle;">
     </div>
+
     <div id="buttons">
         <button onclick="showSection('SoftcoreLadderSection')" id="SoftcoreLadderBtn" class="button inactive">Softcore Ladder</button>
         <button onclick="showSection('SoftcoreNonLadderSection')" id="SoftcoreNonLadderBtn" class="button inactive">Softcore NonLadder</button>
@@ -187,14 +196,14 @@
             }
             return data;
         }
-		
+
         const baseChartDataset = {
             label: 'Price',
             borderColor: 'rgba(0, 0, 255, 1)',
             borderWidth: 2,
             fill: false
         };
-		
+
         // 차트 생성
         function renderCharts(sectionId, data) {
             for (const itemName in data) {
@@ -213,7 +222,7 @@
                         }
                     }
                 }
-                
+
                 new Chart(chartCtx, chartParam);
             }
         }
@@ -224,5 +233,11 @@
         const Softcore_NonLadder_Values = placeholder_Softcore_NonLadder_Values;
         const Hardcore_Ladder_Values = placeholder_Hardcore_Ladder_Values;
     </script>
+
+    <div id="footer">
+        <p>
+            <a href="mailto:d2r.traderie.appraiser@gmail.com">d2r.traderie.appraiser@gmail.com</a>
+        </p>
+    </div>
 </body>
 </html>
