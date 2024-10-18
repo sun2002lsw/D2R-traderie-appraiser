@@ -86,8 +86,7 @@
 
         canvas {
             height: 140px; /* 캔버스 높이 제한 */
-            max-width: 100%; /* 셀 안에서 너비 제한 */
-            max-height: 100%; /* 셀 안에서 높이 제한 */
+            width: 100%;
         }
 
         /* contact 영역 */
@@ -259,6 +258,7 @@
                     type: 'line',
                     data: chartData,
                     options: {
+                        maintainAspectRatio: false, // 차트가 셀 너비를 모두 사용하게 설정
                         plugins: {
                             legend: {
                                 display: false
