@@ -64,4 +64,7 @@ def refine_data(value_data):
 
             item_value_data_for_chart[data_type][trade_item] = item_values
 
+    # 시간에서 연도, 분, 초를 삭제하자
+    trade_times = [f'{trade_time[5:13]}h' for trade_time in trade_times]
+
     return trade_times, item_value_data_for_chart
