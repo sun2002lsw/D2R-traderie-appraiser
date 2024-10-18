@@ -22,7 +22,22 @@ jobs:
         cp html_builder/* python/lib/python3.12/site-packages/
         zip -r HTML_Builder_Layer.zip python
 
-    - name: Update Lambda Layer
+    - name: Clean up old Lambda Layer versions
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ap-northeast-2
+      run: |
+        versions=$(aws lambda list-layer-versions --layer-name HTML_Builder_Layer --query "LayerVersions[].Version" --output text)
+        latest_version=$(echo "$versions" | tr ' ' '\n' | sort -n | tail -n 1)
+        for version in $versions; do
+          if [ "$version" != "$latest_version" ]; then
+            echo "Deleting layer version: $version"
+            aws lambda delete-layer-version --layer-name HTML_Builder_Layer --version-number $version
+          fi
+        done
+
+    - name: Publish new HTML_Builder_Layer
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -31,3 +46,14 @@ jobs:
         aws lambda publish-layer-version \
           --layer-name HTML_Builder_Layer \
           --zip-file fileb://HTML_Builder_Layer.zip
+
+    - name: Update Lambda to use latest HTML_Builder_Layer
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ap-northeast-2
+        LAYER_ARN: ${{ secrets.LAMBDA_LAYER_ARN }}
+      run: |
+        aws lambda update-function-configuration \
+          --function-name D2R_Traderie_HTML \
+          --layers $LAMBDA_LAYER_ARN
