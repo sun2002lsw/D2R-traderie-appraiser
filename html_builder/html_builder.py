@@ -2,8 +2,8 @@ import os
 import json
 
 
-def build_html(db_data):
-    trade_times, item_value_data_for_chart = refine_data(db_data)
+def build_html(value_data):
+    trade_times, item_value_data_for_chart = refine_data(value_data)
 
     # JSON 문자열로 변환
     trade_times_str = json.dumps(trade_times)
@@ -27,12 +27,12 @@ def build_html(db_data):
     return content
 
 
-def refine_data(db_data):
-    trade_times = sorted({data['Time'] for data in db_data})
+def refine_data(value_data):
+    trade_times = sorted({data['Time'] for data in value_data})
 
     # 데이터 추출
     item_value_data = {}
-    for data in db_data:
+    for data in value_data:
         data_type = data['Type']
         trade_time = data['Time']
         item_values = json.loads(data['ItemValues'])

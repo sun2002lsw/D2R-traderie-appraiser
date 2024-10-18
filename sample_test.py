@@ -8,10 +8,10 @@ import os
 sample_data_path = './sample_data.txt'
 with open(sample_data_path, 'r', encoding='utf-8') as file:
     sample_data = file.read()
-db_data = json.loads(sample_data)
+value_data = json.loads(sample_data)
 
 # AWS lambda에서 사용될 함수
-html = build_html(db_data)
+html = build_html(value_data)
 
 # 결과를 파일로 만들어서 실행해 본다
 sample_result_path = './sample_result.html'

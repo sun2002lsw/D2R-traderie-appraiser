@@ -60,3 +60,13 @@ jobs:
         aws lambda update-function-configuration \
           --function-name D2R_Traderie_HTML \
           --layers arn:aws:lambda:$AWS_REGION:$AWS_ACCOUNT_ID:layer:HTML_Builder_Layer:$LAYER_VERSION
+
+    - name: Run Lambda
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ap-northeast-2
+      run: |
+        aws lambda invoke \
+          --function-name D2R_Traderie_HTML \
+          --payload '{}' response.json  # response.json 인자는 필수
