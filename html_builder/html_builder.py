@@ -42,7 +42,7 @@ def refine_data(value_data):
 
         for trade_item, item_value in item_values.items():
             if trade_item == 'Perfect Amethyst':
-                continue # 퍼자의 가격은 항상 1이라서 의미 없다
+                continue  # 퍼자의 가격은 항상 1이라서 의미 없다
             if trade_item not in item_value_data[data_type]:
                 item_value_data[data_type][trade_item] = {}
             item_value_data[data_type][trade_item][trade_time] = item_value
