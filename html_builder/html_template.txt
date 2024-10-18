@@ -126,9 +126,15 @@
 </head>
 <body>
     <div id="title">
-        <img src="https://cdn.nookazon.com/diablo2resurrected/icons/logo.png" alt="logo" style="width: 100px; vertical-align: middle;">
-        <img src="https://cdn.nookazon.com/traderie/opengraph.jpg" alt="logo" style="width: 200px; vertical-align: middle;">
-        <img src="https://cdn.pixabay.com/photo/2013/07/12/14/28/chart-line-148256_960_720.png" alt="logo" style="width: 70px; vertical-align: middle;">
+        <a href="https://diablo2.blizzard.com" target="_blank">
+            <img src="https://cdn.nookazon.com/diablo2resurrected/icons/logo.png" alt="logo" style="width: 100px; vertical-align: middle;">
+        </a>
+        <a href="https://traderie.com/diablo2resurrected" target="_blank">
+            <img src="https://cdn.nookazon.com/traderie/opengraph.jpg" alt="logo" style="width: 200px; vertical-align: middle;">
+        </a>
+        <a href="https://pixabay.com/vectors/chart-line-line-chart-diagram-trend-148256" target="_blank">
+            <img src="https://cdn.pixabay.com/photo/2013/07/12/14/28/chart-line-148256_960_720.png" alt="logo" style="width: 70px; vertical-align: middle;">
+        </a>
     </div>
 
     <div id="buttons">
@@ -172,21 +178,33 @@
                     imageURL = `https://cdn.nookazon.com/128x128/diablo2resurrected/ring/ring1.png`;
                 }
 
-                const itemHTML = `<div class="item-name-container"><img src="${imageURL}" alt="${itemName}"><span>${itemName}</span></div>`;
+                // 아이템 이름 위에 아이템 이미지를 띄우고, 클릭하면 해당 아이템 조회 페이지로 이동
+                const itemHTML = `
+                    <div class="item-name-container">
+                        <a href="https://traderie.com/diablo2resurrected/products?search=${encodeURIComponent(itemName)}" target="_blank">
+                            <img src="${imageURL}" alt="${itemName}">
+                        </a>
+                        <span>${itemName}</span>
+                    </div>`;
 
-                tableHTML += `
+                // 하나의 행 코드 작성
+                let rowHTML = `
                     <tr>
                         <td>${itemHTML}</td>
                         <td>
                             <div class="price-container">
                                 ${lastPrice} ×
-                                <img src="https://cdn.nookazon.com/128x128/diablo2resurrected/gem/perfect_amethyst.png" alt="currency">
+                                <a href="https://traderie.com/diablo2resurrected/products?search=Perfect Amethyst" target="_blank">
+                                    <img src="https://cdn.nookazon.com/128x128/diablo2resurrected/gem/perfect_amethyst.png" alt="currency">
+                                </a>
                             </div>
                         </td>
                         <td>
                             <canvas id="${sectionId}_Chart_${itemName.replace(' ', '_')}" style="width: 100%; height: 100px;"></canvas>
                         </td>
                     </tr>`;
+
+                tableHTML += rowHTML; // 행 코드를 테이블에 추가
             }
 
             tableHTML += `
