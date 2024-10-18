@@ -35,7 +35,7 @@ def refine_data(db_data):
     for data in db_data:
         data_type = data['Type']
         trade_time = data['Time']
-        item_values = data['ItemValues']
+        item_values = json.loads(data['ItemValues'])
 
         if data_type not in item_value_data:
             item_value_data[data_type] = {}

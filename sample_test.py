@@ -8,10 +8,7 @@ import os
 sample_data_path = './sample_data.txt'
 with open(sample_data_path, 'r', encoding='utf-8') as file:
     sample_data = file.read()
-
 db_data = json.loads(sample_data)
-for idx, data in enumerate(db_data):
-    db_data[idx]['ItemValues'] = json.loads(data['ItemValues'])
 
 # AWS lambda에서 사용될 함수
 html = build_html(db_data)
