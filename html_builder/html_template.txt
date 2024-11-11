@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8207030332829259"
+     crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <title>D2R-Traderie-Appraiser</title>
     <style>
@@ -221,6 +224,7 @@
     <script>
         // chatGPT가 만들어준 버튼 클릭 함수
         function showSection(sectionId) {
+            // 버튼과 섹션의 인덱스가 서로 맞아야 함
             const buttons = ['SoftcoreLadderBtn', 'SoftcoreNonLadderBtn', 'HardcoreLadderBtn'];
             const sections = ['SoftcoreLadderSection', 'SoftcoreNonLadderSection', 'HardcoreLadderSection'];
 
