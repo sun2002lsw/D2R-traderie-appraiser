@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8207030332829259"
-     crossorigin="anonymous"></script>
-
     <meta charset="UTF-8">
     <title>D2R-Traderie-Appraiser</title>
     <style>
@@ -127,7 +124,7 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body onload="showSection('SoftcoreLadderSection')">
     <div id="title">
         <a href="https://diablo2.blizzard.com" target="_blank">
             <img src="https://cdn.nookazon.com/diablo2resurrected/icons/logo.png" alt="logo" style="width: 100px; vertical-align: middle;">
@@ -304,6 +301,18 @@
         <p>
             <a href="mailto:d2r.traderie.appraiser@gmail.com">d2r.traderie.appraiser@gmail.com</a>
         </p>
+    </div>
+
+    <!-- 카카오 광고. Adfit -->
+    <div align="center">
+        <ins class="kakao_ad_area" style="display:none;"
+            data-ad-unit = "DAN-qvpbONxD3nK7rXEh"
+            data-ad-width = "728"
+            data-ad-height = "90">
+        </ins>
+
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async>
+        </script>
     </div>
 </body>
 </html>
