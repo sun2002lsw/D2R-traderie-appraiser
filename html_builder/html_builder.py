@@ -9,7 +9,7 @@ def build_html(value_data):
     trade_times_str = json.dumps(trade_times)
     softcore_ladder_str = json.dumps(item_value_data_for_chart['Softcore_Ladder'])
     softcore_non_ladder_str = json.dumps(item_value_data_for_chart['Softcore_NonLadder'])
-    hardcore_ladder_str = json.dumps(item_value_data_for_chart['Hardcore_Ladder'])
+    # hardcore_ladder_str = json.dumps(item_value_data_for_chart['Hardcore_Ladder'])
 
     # HTML 템플릿 파일 경로 처리
     current_code_path = os.path.abspath(__file__)
@@ -19,10 +19,12 @@ def build_html(value_data):
         content = file.read()
 
     # 템플릿 내에 데이터를 대체
-    content = (content.replace('placeholder_Trade_Times', trade_times_str)
-               .replace('placeholder_Softcore_Ladder_Values', softcore_ladder_str)
-               .replace('placeholder_Softcore_NonLadder_Values', softcore_non_ladder_str)
-               .replace('placeholder_Hardcore_Ladder_Values', hardcore_ladder_str))
+    content = (
+        content.replace('placeholder_Trade_Times', trade_times_str)
+        .replace('placeholder_Softcore_Ladder_Values', softcore_ladder_str)
+        .replace('placeholder_Softcore_NonLadder_Values', softcore_non_ladder_str)
+        # .replace('placeholder_Hardcore_Ladder_Values', hardcore_ladder_str)
+    )
 
     return content
 

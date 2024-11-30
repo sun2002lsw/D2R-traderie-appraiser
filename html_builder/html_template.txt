@@ -143,7 +143,7 @@
     <div id="buttons">
         <button onclick="showSection('SoftcoreLadderSection')" id="SoftcoreLadderBtn" class="button inactive">Softcore Ladder</button>
         <button onclick="showSection('SoftcoreNonLadderSection')" id="SoftcoreNonLadderBtn" class="button inactive">Softcore NonLadder</button>
-        <button onclick="showSection('HardcoreLadderSection')" id="HardcoreLadderBtn" class="button inactive">Hardcore Ladder</button>
+        <button onclick="showSection('HardcoreLadderSection')" id="HardcoreLadderBtn" class="button inactive" style="display: none;">Hardcore Ladder</button>
     </div>
 
     <!-- chatGPT가 만들어준 테이블 섹션 생성 함수 -->
