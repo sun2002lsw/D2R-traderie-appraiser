@@ -60,7 +60,7 @@
         }
 
         .left-side-div {
-            width: 15%; /* 부모 컨테이너 너비의 % */
+            width: 20%; /* 부모 컨테이너 너비의 % */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -68,7 +68,7 @@
         }
 
         .right-side-div {
-            width: 15%; /* 부모 컨테이너 너비의 % */
+            width: 20%; /* 부모 컨테이너 너비의 % */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,7 +76,7 @@
         }
 
         .center-div {
-            width: 70%; /* 부모 컨테이너 너비의 % */
+            width: 60%; /* 부모 컨테이너 너비의 % */
             display: flex;
             justify-content: center;
             align-items: center;
