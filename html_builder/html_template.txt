@@ -50,7 +50,40 @@
             margin-bottom: 20px;
         }
 
-        /* 테이블 영역 */
+        /* 테이블과 광고를 포함한 본문 내용 */
+        .container {
+            display: flex;
+            justify-content: space-between; /* 양쪽 공백에 div로 광고를 넣기 위해 사용 */
+            align-items: center;
+            width: 100%;
+            margin: 0 auto; /* 중앙 정렬 */
+        }
+
+        .side-div {
+            width: 15%; /* 부모 컨테이너 너비의 % */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center-div {
+            width: 70%; /* 부모 컨테이너 너비의 % */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 본문 영역 */
+        #SoftcoreLadderSection {
+            min-width: 100%; /* 최소한 부모의 모든 너비를 차지 */
+        }
+        #SoftcoreNonLadderSection {
+            min-width: 100%; /* 최소한 부모의 모든 너비를 차지 */
+        }
+        #HardcoreLadderSection {
+            min-width: 100%; /* 최소한 부모의 모든 너비를 차지 */
+        }
+
         #table-container {
             display: flex;
             justify-content: center;
@@ -62,7 +95,7 @@
         table {
             border-collapse: collapse;
             margin: 0 auto;
-            width: 70%;
+            width: 100%;
             border: 2px solid #000; /* 테이블 경계 설정 */
         }
 
@@ -126,6 +159,7 @@
 </head>
 
 <body onload="showSection('SoftcoreLadderSection')">
+    <!-- 맨위에 여러 로고들 -->
     <div id="title">
         <a href="https://diablo2.blizzard.com" target="_blank">
             <img src="https://cdn.nookazon.com/diablo2resurrected/icons/logo.png" alt="logo" style="width: 100px; vertical-align: middle;">
@@ -138,16 +172,27 @@
         </a>
     </div>
 
+    <!-- 위쪽의 버튼들 -->
     <div id="buttons">
         <button onclick="showSection('SoftcoreLadderSection')" id="SoftcoreLadderBtn" class="button inactive">Softcore Ladder</button>
         <button onclick="showSection('SoftcoreNonLadderSection')" id="SoftcoreNonLadderBtn" class="button inactive">Softcore NonLadder</button>
         <button onclick="showSection('HardcoreLadderSection')" id="HardcoreLadderBtn" class="button inactive" style="display: none;">Hardcore Ladder</button>
     </div>
 
-    <div id="SoftcoreLadderSection" class="hidden"></div>
-    <div id="SoftcoreNonLadderSection" class="hidden"></div>
-    <div id="HardcoreLadderSection" class="hidden"></div>
+    <!-- 중앙에 본문과 사이드 광고 -->
+    <div class="container">
+        <div class="side-div">
+        </div>
+        <div class="center-div">
+            <div id="SoftcoreLadderSection" class="hidden"></div>
+            <div id="SoftcoreNonLadderSection" class="hidden"></div>
+            <div id="HardcoreLadderSection" class="hidden"></div>
+        </div>
+        <div class="side-div">
+        </div>
+    </div>
 
+    <!-- 맨 아래에 이메일 같은 요소들 -->
     <div id="footer">
         <p>
             <a href="mailto:d2r.traderie.appraiser@gmail.com">d2r.traderie.appraiser@gmail.com</a>
