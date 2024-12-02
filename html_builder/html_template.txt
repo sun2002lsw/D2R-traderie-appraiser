@@ -168,8 +168,8 @@
 </head>
 
 <body onload="showSection('SoftcoreLadderSection'); insertAds();">
-    <!-- Adfit 상단 배너 -->
-    <div align="center">
+    <!-- Adfit 상단 배너. 안 예뻐서 비활성화 함 -->
+    <div align="center" style="display:none;">
         <ins class="kakao_ad_area" style="display:none;"
             data-ad-unit = "DAN-IaacZNO02oNaYCmR"
             data-ad-width = "728"
