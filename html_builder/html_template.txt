@@ -159,6 +159,16 @@
 </head>
 
 <body onload="showSection('SoftcoreLadderSection')">
+    <!-- Adfit 상단 배너 -->
+    <div align="center">
+        <ins class="kakao_ad_area" style="display:none;"
+            data-ad-unit = "DAN-IaacZNO02oNaYCmR"
+            data-ad-width = "728"
+            data-ad-height = "90">
+        </ins>
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    </div>
+
     <!-- 맨위에 여러 로고들 -->
     <div id="title">
         <a href="https://diablo2.blizzard.com" target="_blank">
@@ -182,6 +192,12 @@
     <!-- 중앙에 본문과 사이드 광고 -->
     <div class="container">
         <div class="side-div">
+            <ins class="kakao_ad_area" style="display:none;"
+                data-ad-unit = "DAN-YJCAI6Whc5pZp7b7"
+                data-ad-width = "160"
+                data-ad-height = "600">
+            </ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         </div>
         <div class="center-div">
             <div id="SoftcoreLadderSection" class="hidden"></div>
@@ -189,6 +205,12 @@
             <div id="HardcoreLadderSection" class="hidden"></div>
         </div>
         <div class="side-div">
+            <ins class="kakao_ad_area" style="display:none;"
+                data-ad-unit = "DAN-PF6BzvAv37NxNmGa"
+                data-ad-width = "160"
+                data-ad-height = "600">
+            </ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         </div>
     </div>
 
