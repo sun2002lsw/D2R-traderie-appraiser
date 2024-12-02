@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>D2R-Traderie-Appraiser</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* 버튼 스타일 공통 */
         .button {
@@ -122,8 +123,8 @@
             margin-bottom: 5px;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body onload="showSection('SoftcoreLadderSection')">
     <div id="title">
         <a href="https://diablo2.blizzard.com" target="_blank">
@@ -143,8 +144,28 @@
         <button onclick="showSection('HardcoreLadderSection')" id="HardcoreLadderBtn" class="button inactive" style="display: none;">Hardcore Ladder</button>
     </div>
 
-    <!-- chatGPT가 만들어준 테이블 섹션 생성 함수 -->
+    <div id="SoftcoreLadderSection" class="hidden"></div>
+    <div id="SoftcoreNonLadderSection" class="hidden"></div>
+    <div id="HardcoreLadderSection" class="hidden"></div>
+
+    <div id="footer">
+        <p>
+            <a href="mailto:d2r.traderie.appraiser@gmail.com">d2r.traderie.appraiser@gmail.com</a>
+        </p>
+    </div>
+
+    <!-- Adfit 하단 배너 -->
+    <div align="center">
+        <ins class="kakao_ad_area" style="display:none;"
+            data-ad-unit = "DAN-qvpbONxD3nK7rXEh"
+            data-ad-width = "728"
+            data-ad-height = "90">
+        </ins>
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    </div>
+
     <script>
+        // chatGPT가 만들어준 테이블 섹션 생성 함수
         function createTable(sectionId, data) {
             // 데이터를 Price 값(배열의 마지막 값) 기준으로 정렬
             const sortedData = Object.entries(data).sort((a, b) => {
@@ -212,13 +233,7 @@
             </table>`;
             document.getElementById(sectionId).innerHTML = tableHTML;
         }
-    </script>
 
-    <div id="SoftcoreLadderSection" class="hidden"></div>
-    <div id="SoftcoreNonLadderSection" class="hidden"></div>
-    <div id="HardcoreLadderSection" class="hidden"></div>
-
-    <script>
         // chatGPT가 만들어준 버튼 클릭 함수
         function showSection(sectionId) {
             // 버튼과 섹션의 인덱스가 서로 맞아야 함
@@ -296,23 +311,5 @@
         const Softcore_NonLadder_Values = placeholder_Softcore_NonLadder_Values;
         const Hardcore_Ladder_Values = placeholder_Hardcore_Ladder_Values;
     </script>
-
-    <div id="footer">
-        <p>
-            <a href="mailto:d2r.traderie.appraiser@gmail.com">d2r.traderie.appraiser@gmail.com</a>
-        </p>
-    </div>
-
-    <!-- 카카오 광고. Adfit -->
-    <div align="center">
-        <ins class="kakao_ad_area" style="display:none;"
-            data-ad-unit = "DAN-qvpbONxD3nK7rXEh"
-            data-ad-width = "728"
-            data-ad-height = "90">
-        </ins>
-
-        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async>
-        </script>
-    </div>
 </body>
 </html>
