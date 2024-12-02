@@ -269,7 +269,8 @@
                 "DAN-pNzY6IU4eMelG35f",
                 "DAN-XA5YVCyQ6O2wdlEU",
                 "DAN-DivmB4xYmlExyMzH",
-                "DAN-tjvXf36BUHz5Kf5i"
+                "DAN-tjvXf36BUHz5Kf5i",
+                "DAN-6O9NfGAnsD6n2WU5"
             ];
 
             leftAdUnits.forEach(adUnit => {
@@ -278,8 +279,31 @@
             });
         }
 
+        function insertRightAds() {
+            const rightAdContainer = document.querySelector('.right-side-div'); // 왼쪽 광고 컨테이너 선택
+            const rightAdUnits = [
+                "DAN-mnU5zkuJUw8Q4Jgc",
+                "DAN-H2plAHFUsPZUZ38X",
+                "DAN-GJj8UJI9ARacGLgB",
+                "DAN-nkNOAnBLJR37EgfB",
+                "DAN-ObQKU0SnAC0cR4wz",
+                "DAN-BeJXp8C3p07r02Ry",
+                "DAN-OpqDAyU79bmc1MbH",
+                "DAN-qdrkRnudLFKexayO",
+                "DAN-mR5JPUG35o0BpJzE",
+                "DAN-nc34MteUfu6RRc2d",
+                "DAN-kuf8iIpgwZ3ClE7H"
+            ];
+
+            rightAdUnits.forEach(adUnit => {
+                const adElement = createSideAdFitScript(adUnit); // 광고 요소 생성
+                rightAdContainer.appendChild(adElement); // 각 광고 단위를 동적으로 추가
+            });
+        }
+
         function insertAds() {
             insertLeftAds();
+            insertRightAds();
         }
 
         // chatGPT가 만들어준 테이블 섹션 생성 함수
